@@ -1,0 +1,32 @@
+@using Exam1.Models
+@model Funday
+@using Microsoft.AspNetCore.Http
+
+<div>
+    <a href="/dashboard" class="btn btn-info">Dashboard</a>
+</div>
+<h1>Title: @Model.Fundayname </h1>
+<h2>Event Coordinator: @Model.Coordinator.firstname</h2>
+<h2>Description: @Model.description</h2>
+
+<H1>People Attending:</H1>
+    @foreach (RSVP r in Model.guestlist)
+    {
+        <ul>
+            <li>@r.User.firstname</li>
+        </ul>
+    }
+
+
+@{
+    if (Model.UserId == Context.Session.GetInt32("LoggedIn")) 
+    {
+        <div>
+            <a href="/delete/@Model.FundayId">Delete</a>
+        </div>
+    }
+}
+
+<div>
+    <a href="/logout" class="btn btn-danger">Logout</a>
+</div>

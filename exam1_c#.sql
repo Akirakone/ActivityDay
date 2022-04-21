@@ -1,0 +1,1 @@
+SELECT * FROM exam1db.users;

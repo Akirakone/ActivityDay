@@ -1,0 +1,43 @@
+@using Exam1.Models
+@model Funday
+<h1>Plan your FunDay!</h1>
+
+<div>
+    <a href="/dashboard" class="btn btn-info">Dashboard</a>
+</div>
+
+        <div>
+    <form action="/planFunday" method="post">
+        <div>
+            <label> Title</label>
+            <input asp-for="Fundayname">
+            <span asp-validation-for="Fundayname" class="text-danger"></span>
+        </div>
+        <div>
+            <label> Date and Time</label>
+            <input asp-for="Fundaydate">
+            <span asp-validation-for="Fundaydate" class="text-danger"></span>
+        </div>
+       <div>
+                    <label for="Duration">Duration</label>
+                    <input asp-for="Duration">
+                    <select asp-for="length">
+                        <option hidden selected disabled></option>
+                        <option value="Hours">Hours</option>
+                        <option value="Minutes">Minutes</option>
+                        <option value="Days">Days</option>
+                    </select>
+                    <span asp-validation-for="length" class="text-danger"></span>
+                </div>
+          <div>
+                    <label for="description">Description</label>
+                    <textarea asp-for="description" cols="30" rows="3"></textarea>
+                    <span asp-validation-for="description" class="text-danger"></span>
+                </div>
+        <input type="hidden" name="UserId" value="@ViewBag.UserId">
+        <input type="submit" value="Create" class="btn btn-success">
+    </form>
+</div>
+<div>
+    <a href="/logout" class="btn btn-danger">Logout</a>
+</div>

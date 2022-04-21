@@ -1,0 +1,59 @@
+@using Exam1.Models
+@model Funday
+
+<h2> Dojo Activity Center! </h2>
+<div>
+    <a href="/logout" class="btn btn-danger">Logout</a>
+</div>
+<div>
+    <a href="/addFunday" class="btn btn-info">Plan a Funday! </a>
+</div>
+<div>
+    <table class="table table-striped">
+        <tr>
+             <th>Activity</th>
+            <th>Date and Time</th>
+            <th>Duration</th>
+            <th>Event Coordinator</th>
+            <th># of Participants</th>
+            <th>Action</th>
+        </tr>
+        @{
+            foreach (Funday w in ViewBag.AllFundays)
+            {
+                <tr>
+                    <td><a href="/Funday/@w.FundayId">@w.Fundayname </a></td>
+                    <td>@w.Fundaydate</td>
+                    <td>@w.Duration @w.length</td>
+                    <td>@w.UserId</td>
+                    @* <td>@w.Coordinator.firstname</td>  *@
+                    <td>@w.guestlist.Count</td>
+                    
+                        @{
+                            if (w.UserId == ViewBag.LoggedIn.UserId)
+                            {
+                                <td>
+                                <a href="/delete/@w.FundayId">Delete | </a>
+                                
+                                </td>
+                            }
+                            else if (w.guestlist.Any(f => f.UserId == ViewBag.LoggedIn.UserId))
+                            {
+                                <td><a href="/unRSVP/@w.FundayId/@ViewBag.LoggedIn.UserId">Leave</a></td>
+                            }
+                            else
+                            {
+                                <td><a href="/RSVP/@w.FundayId/@ViewBag.LoggedIn.UserId">Join</a></td>
+                            }
+                        }
+
+
+                    
+                </tr>
+
+            }
+        }
+    </table>
+</div>
+
+

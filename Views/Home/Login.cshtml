@@ -1,0 +1,21 @@
+@using Exam1.Models
+@model Login
+
+
+<h1> Login </h1>
+<form action="/Login" method="post">
+    <div class="form-group">
+        <label for="lEmail">Email</label>
+        <input asp-for="lEmail" class="form-control" value="a.r@yay.com" >
+        <span asp-validation-for="lEmail" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="lpassword">Password</label>
+        <input asp-for="lPassword" class="form-control" value="12345678">
+        <span asp-validation-for="lPassword" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-danger">
+    </div>
+    
+</form>
